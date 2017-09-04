@@ -42,7 +42,7 @@ public class NewsPresenterImpl extends BasePresenter<NewsContract.View,NewsContr
 
                     @Override
                     public void onNext(NewsBean newsBean) {
-                        Log.i("data",page+category);
+                        Log.i("data","第"+page+"页"+category+"分类");
                         mView.showNewsList(newsBean.getData());
                     }
                 });

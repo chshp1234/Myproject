@@ -31,8 +31,8 @@ public class CollectionAdapter extends RecyclerView.Adapter {
     private boolean mShowFooter = true;
     private List<NewsBean.DataBean> dataList;
     private OnItemDeleteListener onItemDeleteListener;
-    private OnItemLongClickListener onItemLongClickListener;
-    private OnItemClickListener onItemClickListener;
+    private static OnItemLongClickListener onItemLongClickListener;
+    private static OnItemClickListener onItemClickListener;
 
     public OnItemClickListener getOnItemClickListener() {
         return onItemClickListener;
@@ -160,7 +160,7 @@ public class CollectionAdapter extends RecyclerView.Adapter {
 
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder implements View.OnLongClickListener,View.OnClickListener {
+    static class ViewHolder extends RecyclerView.ViewHolder implements View.OnLongClickListener,View.OnClickListener {
         @BindView(R.id.collection_image)
         ImageView collectionImage;
         @BindView(R.id.collection_title)

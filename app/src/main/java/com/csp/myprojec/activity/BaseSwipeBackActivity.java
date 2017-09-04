@@ -19,6 +19,10 @@ public class BaseSwipeBackActivity extends BaseActivity implements SlidingPaneLa
 
     @Override
     public void onPanelSlide(View panel, float slideOffset) {
+//        if (slideOffset > 0.3f) {
+//            slideOffset = 0.3f;
+//        }
+//        panel.setAlpha(1 - slideOffset);
 
     }
 
@@ -54,15 +58,12 @@ public class BaseSwipeBackActivity extends BaseActivity implements SlidingPaneLa
             slidingPaneLayout.setPanelSlideListener(this);
             slidingPaneLayout.setSliderFadeColor(getResources()
                     .getColor(android.R.color.transparent));
-
             // 左侧的透明视图
             View leftView = new View(this);
             leftView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
             slidingPaneLayout.addView(leftView, 0);
-
+            //获取到最顶层的视图容器
             ViewGroup decorView = (ViewGroup) getWindow().getDecorView();
-
-
             // 右侧的内容视图
             ViewGroup decorChild = (ViewGroup) decorView.getChildAt(0);
             decorChild.setBackgroundColor(getResources()

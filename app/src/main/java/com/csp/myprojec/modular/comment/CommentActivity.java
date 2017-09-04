@@ -65,7 +65,7 @@ public class CommentActivity extends MvpActivity<CommentPresenterImpl> implement
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comment);
         ButterKnife.bind(this);
-//        EventBus.getDefault().register(this);
+        EventBus.getDefault().register(this);
         init();
         mvpPresenter.loadComment(nid, parentid, page);
     }
@@ -135,20 +135,20 @@ public class CommentActivity extends MvpActivity<CommentPresenterImpl> implement
         commentWriteFragment.show(getSupportFragmentManager(), "news_comment");
     }
 
-//    @Subscribe(threadMode = ThreadMode.MAIN)
-//    public void reciveMessge(DataChangeEvent DataChangeEvent) {
-//        Log.i("DataChangeEvent", "DataChangeEvent");
-//        page = 1;
-//        if (dataList != null) {
-//            dataList.clear();
-//        }
-//        isMoreData=true;
-//        mvpPresenter.loadComment(nid,parentid, page);
-//    }
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void reciveMessge(DataChangeEvent DataChangeEvent) {
+        Log.i("DataChangeEvent", "DataChangeEvent");
+        page = 1;
+        if (dataList != null) {
+            dataList.clear();
+        }
+        isMoreData=true;
+        mvpPresenter.loadComment(nid,parentid, page);
+    }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-//        EventBus.getDefault().unregister(this);
+        EventBus.getDefault().unregister(this);
     }
 }

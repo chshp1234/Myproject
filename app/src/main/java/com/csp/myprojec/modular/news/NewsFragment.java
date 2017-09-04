@@ -47,14 +47,14 @@ public class NewsFragment extends Fragment {
     private void init() {
         newsListFragment = new NewsListFragment();
         MyPagerAdapter adapter = new MyPagerAdapter(getChildFragmentManager());//fragment+fragment时要用getChildFragmentManager()
-        adapter.addFragment(newsListFragment.newInstance(Config.MASTER), "大师");
         adapter.addFragment(newsListFragment.newInstance(Config.TRAVEL), "旅行");
         adapter.addFragment(newsListFragment.newInstance(Config.COSMIC_SPACE), "宇宙");
         adapter.addFragment(newsListFragment.newInstance(Config.CULTURAL), "人文");
-        adapter.addFragment(newsListFragment.newInstance(Config.OCEAN), "海洋");
-        adapter.addFragment(newsListFragment.newInstance(Config.NATURAL_DISASTER), "自然灾害");
-        adapter.addFragment(newsListFragment.newInstance(Config.PHOTOGRAPHY), "摄影");
         adapter.addFragment(newsListFragment.newInstance(Config.KNOWLEDGE_OF_ANIMALS), "动物");
+        adapter.addFragment(newsListFragment.newInstance(Config.PHOTOGRAPHY), "摄影");
+        adapter.addFragment(newsListFragment.newInstance(Config.NATURAL_DISASTER), "自然灾害");
+        adapter.addFragment(newsListFragment.newInstance(Config.OCEAN), "海洋");
+        adapter.addFragment(newsListFragment.newInstance(Config.MASTER), "大师");
         viewpager.setAdapter(adapter);
         viewpagertab.setViewPager(viewpager);
     }

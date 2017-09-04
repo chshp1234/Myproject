@@ -110,8 +110,8 @@ public class DailyPhotoFragment extends MvpFragment<DailyPhotoPresenterImpl> imp
             getActivity().startActivity(intent);
         });
         mAdapter.setOnShareListener((view, position) -> new ShareAction(getActivity())
-                .withMedia(new UMImage(getActivity(), dataList.get(position).getThumb()))
                 .withText(dataList.get(position).getTitle())
+                .withMedia(new UMImage(getActivity(), dataList.get(position).getContent()))
                 .setDisplayList(SHARE_MEDIA.WEIXIN, SHARE_MEDIA.WEIXIN_CIRCLE, SHARE_MEDIA.WEIXIN_FAVORITE)
                 .setCallback(new UMShareListener() {
                     @Override

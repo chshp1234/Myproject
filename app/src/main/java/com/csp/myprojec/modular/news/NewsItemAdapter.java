@@ -26,7 +26,7 @@ public class NewsItemAdapter extends RecyclerView.Adapter {
     private static final int TYPE_ITEM = 0;
     private static final int TYPE_FOOTER = 1;
     private boolean mShowFooter = true;
-    private OnItemClickListener mOnItemClickListener;
+    private static OnItemClickListener mOnItemClickListener;
     private Context mContext;
     private List<NewsBean.DataBean> dataList;
 
@@ -118,7 +118,7 @@ public class NewsItemAdapter extends RecyclerView.Adapter {
 
     }
 
-    class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         @BindView(R.id.thumb)
         ImageView thumb;
         @BindView(R.id.title)

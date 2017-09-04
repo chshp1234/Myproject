@@ -112,7 +112,7 @@ public class CommentWriteFragment extends AppCompatDialogFragment {
         View view = inflater.inflate(R.layout.comment_write_fragment, container, false);
         unbinder = ButterKnife.bind(this, view);
         mCompositeSubscription = new CompositeSubscription();
-        EventBus.getDefault().register(this);
+//        EventBus.getDefault().register(this);
         return view;
 
     }
@@ -180,7 +180,7 @@ public class CommentWriteFragment extends AppCompatDialogFragment {
                                 ToastUtils.showToast(MyApplication.getContext(),"评论成功");
 //                                if (getTag().equals("news_comment")){
 //                                    Log.i("tag",getTag());
-//                                    EventBus.getDefault().post(new DataChangeEvent());
+                                    EventBus.getDefault().post(new DataChangeEvent());
 //                                }
                                 dismiss();
                             }else {
