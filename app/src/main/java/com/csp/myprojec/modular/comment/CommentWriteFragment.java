@@ -1,5 +1,6 @@
 package com.csp.myprojec.modular.comment;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -38,6 +39,8 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -59,9 +62,9 @@ public class CommentWriteFragment extends AppCompatDialogFragment {
     @BindView(R.id.comment_send)
     TextView commentSend;
     Unbinder unbinder;
+    private InputMethodManager inputMethodManager;
     Window window;
     WindowManager.LayoutParams params;
-    //
     CompositeSubscription mCompositeSubscription;
     private int nid;
     private int parentid;
@@ -76,6 +79,24 @@ public class CommentWriteFragment extends AppCompatDialogFragment {
         window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
 
+    }
+
+    private void setSoftKeyboard() {
+
+        // 为 EditText 获取焦点
+        commentContent.setFocusable(true);
+        commentContent.setFocusableInTouchMode(true);
+        commentContent.requestFocus();
+
+        // TODO: 17-8-11 为何这里要延时才能弹出软键盘, 延时时长又如何判断？ 目前是手动调试
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                inputMethodManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputMethodManager.toggleSoftInput(0, InputMethodManager.SHOW_FORCED);
+            }
+        }, 110);
     }
 
     //显示关闭输入法
@@ -103,6 +124,7 @@ public class CommentWriteFragment extends AppCompatDialogFragment {
         parentid = getArguments().getInt("parentid");
         Log.i("nid", nid + "");
         Log.i("parentid", parentid + "");
+
     }
 
     @Nullable
@@ -113,6 +135,7 @@ public class CommentWriteFragment extends AppCompatDialogFragment {
         unbinder = ButterKnife.bind(this, view);
         mCompositeSubscription = new CompositeSubscription();
 //        EventBus.getDefault().register(this);
+        setSoftKeyboard();
         return view;
 
     }
